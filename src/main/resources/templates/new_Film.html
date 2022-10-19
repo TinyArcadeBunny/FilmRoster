@@ -17,6 +17,7 @@
   <!--/*@thymesVar id="film" type=""*/-->
   <form action="#" th:action="@{/saveFilm}" th:object="${film}"
         method="POST">
+
     <input type="text" th:field="*{filmName}"
            placeholder="Film Name" class="form-control mb-4 col-4">
 
@@ -24,7 +25,7 @@
            placeholder="Director Name" class="form-control mb-4 col-4">
 
     <input type="text" th:field="*{runtime}"
-           placeholder="Runtime duration" class="form-control mb-4 col-4">
+           placeholder="Runtime - XX:XX:XX" class="form-control mb-4 col-4">
 
     <button type="submit" class="btn btn-info col-2"> Save Film</button>
   </form>

@@ -1,6 +1,6 @@
 package net.javaguides.springboot.Service;
 
-import net.javaguides.springboot.Controller.Film;
+import net.javaguides.springboot.model.Film;
 import net.javaguides.springboot.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,7 +19,7 @@ public class FilmServiceImpl implements FilmService {
     private FilmRepository filmRepository;
 
     @Override
-    public List<Film> getALLEmployees() {
+    public List<Film> getALLFilms() {
         return this.filmRepository.findAll();
     }
 
@@ -55,10 +55,5 @@ public class FilmServiceImpl implements FilmService {
         Pageable pageable = (Pageable) PageRequest.of(pageNo -1, pageSize, sort);
         return this.filmRepository.findAll((org.springframework.data.domain.Pageable) pageable);
 
-    }
-
-    @Override
-    public Object getAllFilms() {
-        return null;
     }
 }

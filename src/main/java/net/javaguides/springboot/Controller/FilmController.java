@@ -1,6 +1,7 @@
 package net.javaguides.springboot.Controller;
 
 import net.javaguides.springboot.Service.FilmService;
+import net.javaguides.springboot.model.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class FilmController {
     //display list of employees
     @GetMapping("/")
     public String viewHomePage(Model model) {
-        model.addAttribute("listFilms", filmService.getAllFilms());
+        model.addAttribute("listFilms", filmService.getALLFilms());
         return "index";
 
     }
