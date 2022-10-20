@@ -1,5 +1,7 @@
 package net.javaguides.springboot.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Time;
 
