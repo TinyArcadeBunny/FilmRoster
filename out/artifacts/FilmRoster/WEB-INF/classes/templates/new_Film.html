@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Film Roster</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <h1>Film Roster</h1>
+  <hr>
+  <h2>Save Film</h2>
+
+  <!--/*@thymesVar id="film" type=""*/-->
+  <form action="#" th:action="@{/saveFilm}" th:object="${film}"
+        method="POST">
+    <div>
+      <label>Film Name:</label>
+      <input type="text" th:field="*{filmName}"
+           placeholder="Ex: Scream" class="form-control mb-4 col-4">
+    </div>
+    <div>
+      <label>Director:</label>
+      <input type="text" th:field="*{directorName}"
+           placeholder="Ex: Wes Craven" class="form-control mb-4 col-4">
+    </div>
+    <div>
+      <label>Runtime:</label>
+      <input type="text" th:field="*{runtime}"
+           placeholder="Ex: XX:XX:XX" class="form-control mb-4 col-4">
+    </div>
+
+    <button type="submit" class="btn btn-info col-2"> Save Film</button>
+  </form>
+
+  <hr>
+
+  <a th:href = "@{/}"> Back to Film List</a>
+</div>
+</body>
+</html>
