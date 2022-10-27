@@ -20,8 +20,16 @@ public class Film {
 
     @Column(name = "Director_Name")
     private String directorName;
+
     @Column(name = "Runtime")
     private Time runtime;
+
+    @Column(name = "Rating")
+    private int rating;
+
+    @Column(name = "Watched")
+    private boolean watched;
+
     public long getId() {
         return id;
     }
@@ -45,5 +53,17 @@ public class Film {
     }
     public void setRuntime(Time runtime) {
         this.runtime = runtime;
+    }
+    public int getRating() {
+        return rating;
+    }
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+    public boolean isWatched() {
+        return watched;
+    }
+    public void setWatched(boolean watched) {
+        this.watched = watched;
     }
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Film Roster</title>
+    <title>Film Roseter</title>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -10,31 +10,26 @@
 </head>
 <body style="background-color:#262730">
 <div class="container">
-    <h1 style="color:#FEF6C9">Unwatched Film List</h1>
+    <h1 style="color:#FEF6C9">Watched Films List</h1>
     <table border="1" class="table table-striped table-dark">
         <thead>
         <tr>
             <th> Film Name </th>
             <th> Director Name </th>
             <th> Runtime </th>
-            <th> Edit Film Roster </th>
+            <th> Rating </th>
         </tr>
         </thead>
         <tbody>
-        <tr  th:each="film : ${listFilms}">
+        <tr th:each="film : ${listWatchedFilms}">
             <td th:text="${film.filmName}"></td>
             <td th:text="${film.directorName}"></td>
             <td th:text="${film.runtime}"></td>
-            <td>
-                <a th:href="@{/showFormForUpdate/{id}(id=${film.id})}" style="background-color:#D4DFC7" class="btn btn-secondary">Update</a>
-                <a th:href="@{/deleteFilm/{id}(id=${film.id})}" style="background-color:#96C0B7" class="btn btn-secondary">Delete</a>
-                <a th:href="@{/showFormForRateFilm/{id}(id=${film.id})}" style="background-color:#878E88" class="btn btn-secondary">Watched</a>
-            </td>
+            <td th:text="${film.rating}"></td>
         </tr>
         </tbody>
     </table>
-    <a th:href = "@{/showNewFilmForm}" class="btn btn-secondary btn-lg"> Add Film </a>
-    <a th:href = "@{/showWatchedFilms}" class="btn btn-secondary btn-lg"> Watched Films </a>
+    <a th:href = "@{/}" class="btn btn-secondary btn-lg"> Back to Unwatched Film List</a>
     <div th:if = "${totalPages > 1}">
         <div class = "row col-sm-10">
             <div class = "col-sm-2">
@@ -57,6 +52,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

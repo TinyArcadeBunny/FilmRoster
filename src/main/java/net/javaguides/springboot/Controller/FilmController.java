@@ -22,7 +22,7 @@ public class FilmController {
     //display list of employees
     @GetMapping("/")
     public String viewHomePage(Model model) {
-        model.addAttribute("listFilms", filmService.getALLFilms());
+        model.addAttribute("listFilms", filmService.getALLUnWatchedFilms());
         return "index";
 
     }
@@ -41,7 +41,6 @@ public class FilmController {
     }
     @GetMapping("/showFormForUpdate/{id}")
     public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
-
         // get films from the service
         Film film = filmService.getFilmById(id);
 
@@ -51,10 +50,30 @@ public class FilmController {
     }
     @GetMapping("/deleteFilm/{id}")
     public String deleteFilm(@PathVariable (value = "id") long id) {
-
         // call delete film method
         this.filmService.deleteFilmById(id);
         return "redirect:/";
+    }
+    //Button to take us to the watched films page
+    @GetMapping("/showWatchedFilms")
+    public String showWatchedFilms(Model model){
+        //get the watched films and display new page
+        model.addAttribute("listWatchedFilms", this.filmService.getALLWatchedFilms());
+        return "watched_film";
+    }
+    @PostMapping("/updateRating")
+    public String updateRating(@ModelAttribute("film") Film film) {
+        // save Film to database
+        film.setWatched(true);
+        filmService.saveFilm(film);
+        return "redirect:/showWatchedFilms";
+    }
+    //Mapping for pressing watched button
+    @GetMapping("/showFormForRateFilm/{id}")
+    public String rateFilmForm(@PathVariable ( value = "id") long id, Model model){
+        Film film = filmService.getFilmById(id);
+        model.addAttribute(film);
+        return "rate_film";
     }
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo") int pageNo,

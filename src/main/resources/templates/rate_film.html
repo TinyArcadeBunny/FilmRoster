@@ -10,27 +10,31 @@
 </head>
 <body style="background-color:#262730">
 <div class="container">
-    <h1 style="color:#FEF6C9">Update Film</h1>
+    <h1 style="color:#FEF6C9">Please Rate the Film</h1>
     <hr>
 
-    <form action="#" th:action="@{/saveFilm}" th:object="${film}"
+    <form action="#" th:action="@{/updateRating}" th:object="${film}"
           method="POST">
 
         <!-- Add hidden form field to handle update -->
         <input type="hidden" th:field="*{id}" />
 
-        <input type="text" th:field="*{filmName}" class="form-control mb-4 col-4">
 
-        <input type="text" th:field="*{directorName}" class="form-control mb-4 col-4">
+        <input type="hidden" th:field="*{filmName}">
 
-        <input type="text" th:field="*{runtime}" class="form-control mb-4 col-4">
+        <input type="hidden" th:field="*{directorName}">
 
-        <button type="submit" class="btn btn-secondary btn-lg" style="background-color:#D4DFC7"> Update Film</button>
+        <input type="hidden" th:field="*{runtime}">
+
+        <input type="number" th:field="*{rating}" min="0" max="5" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-secondary btn-lg" style="background-color:#D4DFC7"> Update Rating</button>
     </form>
 
     <hr>
 
     <a th:href = "@{/}" class="btn btn-secondary btn-lg"> Back to Unwatched Film List</a>
+    <a th:href = "@{/showWatchedFilms}" class="btn btn-secondary btn-lg"> Go to Watched Film List</a>
 </div>
 </body>
 </html>

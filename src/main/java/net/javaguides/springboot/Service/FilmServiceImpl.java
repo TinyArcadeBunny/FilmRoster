@@ -19,14 +19,18 @@ public class FilmServiceImpl implements FilmService {
     private FilmRepository filmRepository;
 
     @Override
-    public List<Film> getALLFilms() {
-        return this.filmRepository.findAll();
+    public List<Film> getALLUnWatchedFilms() {
+        return this.filmRepository.findAllByWatchedIsFalse();
+    }
+
+    @Override
+    public List<Film> getALLWatchedFilms() {
+        return this.filmRepository.findAllByWatchedIsTrue();
     }
 
     @Override
     public void saveFilm(Film film) {
         this.filmRepository.save(film);
-
     }
 
     @Override
@@ -44,7 +48,6 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public void deleteFilmById(long id) {
         this.filmRepository.deleteById(id);
-
     }
 
     @Override
@@ -54,6 +57,11 @@ public class FilmServiceImpl implements FilmService {
 
         Pageable pageable = (Pageable) PageRequest.of(pageNo -1, pageSize, sort);
         return this.filmRepository.findAll((org.springframework.data.domain.Pageable) pageable);
+    }
 
+    @Override
+    public void updateFilmByIdToWatched(Film film) {
+        film.setWatched(true);
+        this.filmRepository.save(film);
     }
 }
